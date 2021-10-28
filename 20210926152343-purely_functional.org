@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       f8e8a3b7-7919-42e2-bda0-0dd3cafc9f2c
+:END:
+#+title: Purely Functional
+
+* Purely Functional

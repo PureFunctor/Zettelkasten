@@ -1,0 +1,4 @@
+:PROPERTIES:
+:ID:       1d92c6cf-eae4-4562-a630-595a546c8ad5
+:END:
+#+title: Bifunctor

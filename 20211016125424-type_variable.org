@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       9617fa62-8eba-4f71-b167-67598f23b3ce
+:END:
+#+title: Type Variable
+
+* Type Variable

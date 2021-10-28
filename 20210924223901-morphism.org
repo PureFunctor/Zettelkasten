@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       a853c555-bcef-48dd-8eee-f70aeb6c33dc
+:END:
+#+title: Morphism
+#+author: PureFunctor
+#+date: <2021-09-24 Fri>
+
+* Morphism
+A morphism represents a change from one thing into another.
+[[id:d91ffdb8-b4c9-4ac1-a666-54812fbdf0ce][Functions]] are examples of basic morphisms.

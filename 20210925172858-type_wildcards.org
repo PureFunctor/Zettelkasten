@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       969037db-ee30-4c4c-8772-75cd07f0106f
+:END:
+#+title: Type Wildcards
+
+Temporary Links
+- [[id:50b076f2-826a-4f91-8705-3df3c881f262][Type Holes]]
+
+* Type Wildcards

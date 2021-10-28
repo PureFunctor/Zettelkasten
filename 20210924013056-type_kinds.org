@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       22a65600-2728-40c5-a4bc-ea8743ebed64
+:END:
+#+title: Type Kinds
+
+* Type Kinds

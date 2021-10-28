@@ -1,0 +1,15 @@
+:PROPERTIES:
+# :ID:       733451ca-924b-4a92-9f8f-e5faed707b25
+:END:
+#+title: Todo
+
+* Oxide Bar
+~oxide-bar~ is my personal =lemonbar= configuration program that aims to
+replace my current =polybar= setup.
+
+** Notes
++ Allow color configuration for each section. We can use some data type
+  for this to parse hex representations. We also simply need to add the
+  fields to the structs instead of doing anything fancy.
++ Move sections into their own modules under ~oxide~. This should allow
+  development to feel less cluttered.

@@ -1,0 +1,134 @@
+:PROPERTIES:
+:ID:       d91ffdb8-b4c9-4ac1-a666-54812fbdf0ce
+:END:
+#+title: Functions
+#+author: PureFunctor
+#+date: <2021-09-26 Sun>
+#+filetags: :PureScript:
+
+* Functions
+A function describes a [[id:a853c555-bcef-48dd-8eee-f70aeb6c33dc][morphism]] or a change between two types or values.
+Takes for example the following functions:
+
+#+begin_src purescript
+addOne :: Int → Int
+addOne x = x + 1
+#+end_src
+
+** Function Currying
+:PROPERTIES:
+:ID:       b1df2b70-60af-43b3-9cc7-57a83de602eb
+:END:
+
+In most functional programming languages, functions that take multiple
+arguments are "curried". This means that instead of taking multiple
+arguments at once, functions accept a single argument and returns
+another function that takes one argument until all of them are applied
+and a concrete value is achieved.
+
+#+begin_src purescript
+plus :: Int → Int → Int
+plus x y = x + y
+
+plusOne :: Int → Int
+plusOne = plus 1
+
+three :: Int
+three = plusOne 2
+#+end_src
+
+This design allows for partial function application as demonstrated by the
+~plusOne~ function in the code block above.
+
+** Higher-Order Functions
+:PROPERTIES:
+:ID:       1651b62a-45d6-4e56-a530-52bb4ee1cd60
+:END:
+In functional programming languages, functions are often called
+/higher-order/ or /first-class/. These two terms usually refer to the fact
+that functions in these types of languages are treated just like any
+other value or term.
+
+For example, you can pass functions to other functions much like you can
+pass concrete values to functions. Take the ~map~ function of the [[id:fea2efbd-2a1b-44ea-853a-627feaaee3f0][Functor]]
+[[id:479ebd3d-f89d-45b3-894b-494905524c2f][type class]] for example:
+
+#+begin_src purescript
+map :: (a → b) → f a → f b
+map _ _ = _
+#+end_src
+
+This function takes some other function with the type ~(a → b)~ as well as
+a value of the type ~f a~ in order to yield an ~f b~.
+
+If we make the [[id:e7ecb55c-07bb-4868-a273-ffd1db1a946f][right associativity]] of the function arrow explicit, the
+~map~ function expresses that it takes some function with the type ~(a → b)~
+and returns another function with the type ~(f a → f b)~.
+
+#+begin_src purescript
+map :: (a → b) → (f a → f b)
+map _ = _
+#+end_src
+
+** Functions are Pure
+:PROPERTIES:
+:ID:       56f8729f-fd39-4efa-af0d-578c65f6c8e3
+:END:
+Functions in functional programming are typically considered [[id:f8e8a3b7-7919-42e2-bda0-0dd3cafc9f2c][pure]] as
+they perform no side effects during their invocation. In general, they
+can be treated as black boxes where input goes in and ouput comes out.
+
+However, you may encounter functions that return [[id:1396259b-602d-4d3c-8605-5ae10871a295][effects]] such as the
+~log~ function, which takes some string and returns an ~Effect Unit~.
+
+#+begin_src purescript
+log :: String → Effect Unit
+#+end_src
+
+This function isn't impure just because it returns an ~Effect~. An ~Effect~
+is a structure that describes a computation in the real world, and ~log~
+doesn't /run/ it, it just builds one such description.
+
+If we were to write an impure function, it would look like this:
+
+#+begin_src purescript
+plus :: Int → Int → Int
+plus x y = unsafePerformEffect do
+  log "called plus"
+  pure (x + y)
+#+end_src
+
+~plus~  /runs/ the ~Effect~ outside of its typical context, thus producing the
+[[id:747a2dbb-74c5-429f-baea-6b2694361d39][side effect]] of printing to the console.
+
+** Functions are Total
+:PROPERTIES:
+:ID:       9151bcf5-0ab1-4aa1-801b-18b6567d93df
+:END:
+Another property to note about functions is that they're "total".
+
+A function is total if every possible input maps to an output. If this
+condition is not fulfilled, then a function is considered "partial".
+
+This is especially evident in [[id:d0079b91-cea6-4adf-8fc0-98ce39f5d5f2][pattern matching]] if not all cases are
+handled. Unlike Haskell, PureScript explicitly disallows partial
+functions by constraining values with the [[https://pursuit.purescript.org/builtins/docs/Prim#t:Partial][Partial]] [[id:479ebd3d-f89d-45b3-894b-494905524c2f][type class]].
+
+#+begin_src purescript
+data Maybe a = Just a | Nothing
+
+fromJust :: ∀ a. Partial ⇒ Maybe a → a
+fromJust (Just a) = a
+#+end_src
+
+The ~Partial~ constraint propagates up, and must be eliminated by the
+[[https://pursuit.purescript.org/packages/purescript-partial/3.0.0/docs/Partial.Unsafe#v:unsafePartial][unsafePartial]] function.
+
+#+begin_src purescript
+partial :: Partial ⇒ String
+partial = fromJust (Just "foo")
+
+-- | not "total"
+impartial :: String
+impartial = unsafePartial partial
+#+end_src

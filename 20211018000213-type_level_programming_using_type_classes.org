@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       e8500976-ee0b-4b7f-9974-2321498ff6c1
+:END:
+#+title: Type-Level Programming using Type Classes
+#+filetags: :PureScript:Article:Todo:

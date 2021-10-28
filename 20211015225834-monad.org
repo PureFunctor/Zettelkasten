@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       72cf5e6f-b268-40b7-87de-edddf2fa26f1
+:END:
+#+title: Monad
+
+* Monad

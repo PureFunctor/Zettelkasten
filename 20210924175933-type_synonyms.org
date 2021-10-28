@@ -1,0 +1,17 @@
+:PROPERTIES:
+:ID:       9c6747de-6130-4b88-9fe1-063a3b02d67c
+:END:
+#+title: Type Synonyms
+#+author: PureFunctor
+#+date: <2021-09-24 Fri>
+
+* Type Synonym
+A type synonym is exactly what it sounds like. It allows one to define
+an alias for an otherwise redundant type to improve readability of code.
+
+Type synonyms are also expanded at compile-time, and as such, incur
+zero runtime costs much like [[id:a603d7e4-d9a5-4d0f-a7a3-13c939200c2a][newtypes]].
+
+#+begin_src purescript
+type LongType = Array (Either { l :: Int } { r :: Number })
+#+end_src

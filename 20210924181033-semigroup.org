@@ -1,0 +1,41 @@
+:PROPERTIES:
+:ID:       c3ebd494-8866-4e69-b17e-a3680484e188
+:END:
+#+title: Semigroup
+#+author: PureFunctor
+#+date: <2021-09-25 Sat>
+
+* Semigroup
+The semigroup [[id:479ebd3d-f89d-45b3-894b-494905524c2f][type class]] describes a type that has a commutative binary
+operation called ~append~. In PureScript, it's defined as:
+
+#+begin_src purescript
+class Semigroup a where
+  append :: a → a → a
+#+end_src
+
+See also:
+- [[id:9789aaf8-adc3-4d24-ac89-08a08d11aa7a][Monoid]]
+
+** Common Semigroup Instances
+
+*** Additive
+Additive is a [[id:0b88319b-63f7-49c1-930a-76111044bc95][newtype wrapper]] over ~Int~ that provides addition for its
+instance's ~append~ operation.
+
+#+begin_src purescript
+newtype Additive = Additive Int
+
+instance Semigroup Additive where
+  append (Additive a) (Additive b) = Additive (a + b)
+#+end_src
+
+*** List
+#+begin_src purescript
+data List a = Cons a (List a) | Nil
+
+instance Semigroup (List a) where
+  append xs Nil = xs
+  append Nil ys = ys
+  append (Cons x xs) ys = Cons x (append xs ys)
+#+end_src

@@ -1,0 +1,69 @@
+:PROPERTIES:
+:ID:       f446efb8-2645-4774-9618-bd6fe1419c13
+:END:
+#+title: Algebraic Data Type
+#+filetags: :PureScript:
+
+* Algebraic Data Types
+An algebraic data type is a concept that encapsulates the notion of
+collections of data with some specific shape. /Algebraic/ refers to the
+property that algebraic data types are created using /algebraic/
+operations such as *sums* and *products*.
+
+- Sum types represent choice between two or more types.
+- Product types represent a combination of two or more types.
+
+[[id:d0079b91-cea6-4adf-8fc0-98ce39f5d5f2][Pattern matching]] is typically used in conjunction with algebraic data
+types in order to examine and perform operations on their values.
+
+** Examples
+~Either~  is one of the most common *sum* types that you'll encounter:
+#+begin_src purescript
+data Either a b = Left a | Right b
+#+end_src
+
+On the other hand, ~Tuple~ is one of the most common *product* types:
+#+begin_src purescript
+data Tuple a b = Tuple a b
+#+end_src
+
+** Sums, Products, and Quantities
+:PROPERTIES:
+:ID:       04402b26-6951-4caf-ab7b-11099702a7c4
+:END:
+If we look further into the concept of *sums* and *products*, we eventually
+end up with figuring out their relationship with the number of unique
+values that we can produce given an algebraic data type.
+
+Let's consider the following sum type:
+#+begin_src purescript
+data LR a = L a | R a
+#+end_src
+
+The [[id:9617fa62-8eba-4f71-b167-67598f23b3ce][type variable]] ~a~ is [[id:06e193f0-bfef-4db7-9e88-23af0e8f545b][universally quantified]], that is to say, it
+expresses that it can be filled in with /any/ type.
+
+If we have an ~n~ amount of ~a~ types, and we have two constructors that
+take a single ~a~ type, we can then say that there exists an ~n + n~ number
+of distinct values.
+
+For our product type:
+#+begin_src purescript
+data M a = M a a
+#+end_src
+
+If we have an ~n~ amount of ~a~ types, and we have one constructor that
+takes two ~a~ types, we can then say that there exists an ~n * n~ or ~n^2~
+number of distinct values.
+
+Furthermore, we can also consider types whose type variables haven't
+been elaborated yet e.g. ~LR a~ or ~M a~ as another unique value. So in the
+case of ~LR a~, the formula would be ~n + n + 1~, while for ~M a~ the formula
+would be ~n * n + 1~.
+
+We can apply this principle for types such as ~Either~, where its
+constructors are only able to fill a single [[id:9617fa62-8eba-4f71-b167-67598f23b3ce][type variable]] at a time,
+making ~Either ... b~ or ~Either a ...~ both valid values.
+
+Likewise, for [[id:854c9e81-0891-4cc3-a8f7-76f2b49f2653][phantom types]], we can either consider them as irrelevant
+(i. e. zero), or significant (i. e. an additional ~n + 1~).

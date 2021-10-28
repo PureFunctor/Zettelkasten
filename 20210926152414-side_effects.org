@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       747a2dbb-74c5-429f-baea-6b2694361d39
+:END:
+#+title: Side Effects
+
+* Side Effects

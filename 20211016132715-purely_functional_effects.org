@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       1396259b-602d-4d3c-8605-5ae10871a295
+:END:
+#+title: Purely Functional Effects
+
+* Purely Functional Effects

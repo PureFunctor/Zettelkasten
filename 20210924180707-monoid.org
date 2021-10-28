@@ -1,0 +1,48 @@
+:PROPERTIES:
+:ID:       9789aaf8-adc3-4d24-ac89-08a08d11aa7a
+:END:
+#+title: Monoid
+#+author: PureFunctor
+#+date: <2021-09-25 Sat>
+
+* Monoid
+A monoid describes an "identity element" called ~mempty~ for a type that
+is also a [[id:c3ebd494-8866-4e69-b17e-a3680484e188][Semigroup]]. In PureScript, it's defined as:
+
+#+begin_src purescript
+class Semigroup a <= Monoid a where
+  mempty :: a
+#+end_src
+
+Note that the type variable ~a~ is also "constrained" with [[id:c3ebd494-8866-4e69-b17e-a3680484e188][Semigroup]] as
+its [[id:479ebd3d-f89d-45b3-894b-494905524c2f][super class]], meaning that any ~Monoid~ must implement a ~Semigroup~
+instance.
+
+** Common Monoid Instances
+
+*** Additive
+Additive is a [[id:0b88319b-63f7-49c1-930a-76111044bc95][newtype wrapper]] over ~Int~ that provides addition for the
+~append~ operation.
+
+#+begin_src purescript
+newtype Additive = Additive Int
+
+instance Semigroup Additive where
+  append (Additive a) (Additive b) = Additive (a + b)
+
+instance Monoid Additive where
+  mempty = Additive 0
+#+end_src
+
+*** List
+#+begin_src purescript
+data List a = Cons a (List a) | Nil
+
+instance Semigroup (List a) where
+  append xs Nil = xs
+  append Nil ys = ys
+  append (Cons x xs) ys = Cons x (append xs ys)
+
+instance Monoid (List a) where
+  mempty = Nil
+#+end_src
