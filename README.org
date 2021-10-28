@@ -1,0 +1,16 @@
+* Pure's Zettelkasten
+This repository houses zettelkasten notes that I've composed using [[https://www.orgroam.com/][Org Roam]]. I mostly write about
+functional programming concepts as well as [[https://purescript.org][PureScript]]. Currently, Emacs and [[https://www.orgroam.com/][Org Roam]] provides the
+best possible experience in navigating through the notes in this repository, however, I'm planning
+to eventually publish them online for easier access.
+
+* Licenses
+
+This work is licensed under a [[https://creativecommons.org/licenses/by-nc/4.0/][Creative Commons Attribution-NonCommercial 4.0 International License]].
+See [[./LICENSE-CC][LICENSE-CC]] for details on license terms.
+
+#+CAPTION: CC BY-NC 4.0
+[[https://licensebuttons.net/l/by-nc/4.0/88x31.png]]
+
+All instances of source code that appear in this work is licensed under the [[https://opensource.org/licenses/BSD-3-Clause][BSD-3-Clause]]
+license. See [[./LICENSE][LICENSE]] for details on license terms.
