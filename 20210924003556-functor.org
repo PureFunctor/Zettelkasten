@@ -1,102 +1,33 @@
 :PROPERTIES:
 :ID:       fea2efbd-2a1b-44ea-853a-627feaaee3f0
 :END:
-#+title: Functor
+#+title: Functors
 #+author: PureFunctor
-#+date: <2021-09-24 Fri>
+#+date: <2021-10-29 Fri>
+#+filetags: :PureScript:
 
-* Functor
-In this note, I discuss about Functors practically in languages such as
-Haskell and PureScript. In a nutshell, a ~Functor~ is a [[id:f446efb8-2645-4774-9618-bd6fe1419c13][data structure]]
-~f~ that:
+This note contains the practical intuition for working with Functors in PureScript. Simply put, a
+=Functor= is a [[id:f446efb8-2645-4774-9618-bd6fe1419c13][data structure]] =f= that is parameterized by some type variable =a= that can be modified
+using a /mapping/ operation.
 
-1. Is parameterized by some type variable ~a~
-2. Implements an operation ~(a → b) → f a → f b~ called ~map~
-
-In Haskell/PureScript code, it can be represented through a [[id:479ebd3d-f89d-45b3-894b-494905524c2f][type class]]:
-
+In PureScript, =Functor= exists as a [[id:479ebd3d-f89d-45b3-894b-494905524c2f][type class]] defined as the following:
 #+begin_src purescript
 class Functor f where
-  map :: forall a. (a → b) → f a → f b
+  map :: ∀ a. (a → b) → (f a → f b)
 #+end_src
 
-** Functor Laws
-Functors must abide by the following laws:
+** Intuition
+A common intuition for Functors is that they are generic container types over some type =a=, that
+allows its elements to be modified using the =map= operation. A more /categorial/ intuition to Functors
+is that they take some function ~(a → b)~ and /lift/ it to work directly on the container type like so:
+~(f a → f b)~.
 
+** Laws
+Instances of the =Functor= type class must abide by the following properties:
 #+begin_src purescript
 -- | Identity
-fmap id = id
+map id = id
 
 -- | Composition
-fmap (f . g) == fmap f . fmap g
+map (f <<< g) == map f . map g
 #+end_src
-
-** Common Functor Instances
-These are a few common ~Functor~ instances:
-
-*** List
-#+begin_src purescript
-data List a = Cons a (List a) | Nil
-
-instance Functor List where
-  map f (Cons a xs) = Cons a (map f xs)
-  map f Nil = Nil
-#+end_src
-
-*** Maybe
-#+begin_src purescript
-data Maybe a = Just a | Nothing
-
-instance Functor Maybe where
-  map f (Just a) = Just (f a)
-  map f Nothing = Nothing
-#+end_src
-
-*** Either
-#+begin_src purescript
-data Either a b = Left a | Right b
-
-instance Functor (Either a) where
-  map f (Left a) = Left a
-  map f (Right b) = Right (f b)
-#+end_src
-
-Since ~Either~ has the [[id:22a65600-2728-40c5-a4bc-ea8743ebed64][kind]]:
-
-#+begin_src purescript
-(Type → Type → Type)
-#+end_src
-
-It first has to be fixed with some type ~a~ before a ~Functor~ instance can
-be implemented.
-
-See also: [[id:1d92c6cf-eae4-4562-a630-595a546c8ad5][Bifunctor]]
-
-*** Const
-#+begin_src purescript
-newtype Const a b = Const a
-
-instance Functor (Const a) where
-  map f (Const b) = (Const b)
-#+end_src
-
-This is another interesting functor with two type parameters. However
-the type parameter, ~b~ that makes ~Const a b~ a functor isn't used anywhere
-in its constructor, thus making it a [[id:854c9e81-0891-4cc3-a8f7-76f2b49f2653][phantom type variable]]
-
-Another quirk of ~Const a~ is with its implementation of ~map~; if we were
-to explicitly write the type of ~map~ instantiated with ~Const a~, we'll get:
-
-#+begin_src purescript
-map :: forall b c. (b → c) → Const a b → Const a c
-map f (Const b) = (Const b)
-#+end_src
-
-We can't just use the identity function like so, as the type ~Const a b~ does not unify with ~Const a c~:
-
-#+begin_src purescript
-map _ = id
-#+end_src
-
-See also:
-- [[id:a603d7e4-d9a5-4d0f-a7a3-13c939200c2a][Newtype]]
