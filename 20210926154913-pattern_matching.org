@@ -2,6 +2,8 @@
 :ID:       d0079b91-cea6-4adf-8fc0-98ce39f5d5f2
 :END:
 #+title: Pattern Matching
+#+author: PureFunctor
+#+date: <2021-10-29 Fri>
 #+filetags: :PureScript:
 
 * Pattern Matching
