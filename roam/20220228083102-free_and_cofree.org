@@ -104,7 +104,7 @@ Cofree f Unit = CofreeCons (f (Cofree f Unit))
 To motivate the use of =Cofree=, here are a few examples that I've synthesized. I'm not discussing
 =Free= here as its primary use-case of turning regular functors into monads warrants its own post.
 
-** Cofree as a infinite stream
+** Cofree as an infinite stream
 
 =Cofree Id a= encodes an infinite stream of values of type =a=. The stream is built using =buildCofree=
 and a coalgebra describing how the seed can synthesize a return value as well as another seed which
