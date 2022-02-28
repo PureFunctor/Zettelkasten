@@ -1,8 +1,9 @@
-* Pure's Zettelkasten
-This repository houses zettelkasten notes that I've composed using [[https://www.orgroam.com/][Org Roam]]. I mostly write about
-functional programming concepts as well as [[https://purescript.org][PureScript]]. Currently, Emacs and [[https://www.orgroam.com/][Org Roam]] provides the
-best possible experience in navigating through the notes in this repository, however, I'm planning
-to eventually publish them online for easier access.
+* Fleeting Thoughts
+
+This repository contains zettelkasten-style notes that I've composed using Org Roam. I mostly use
+this to write about functional programming and other fleeting thoughts that come to my mind. Emacs
+and Org Roam provides the best experience in navigating through the notes in this repository,
+although I'm also planning to make them accessible using a web interface.
 
 * Licenses
 

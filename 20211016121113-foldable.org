@@ -1,6 +1,0 @@
-:PROPERTIES:
-:ID:       b991c869-317b-4066-885c-431943175554
-:END:
-#+title: Foldable
-
-* Foldable

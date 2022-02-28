@@ -1,6 +1,0 @@
-:PROPERTIES:
-:ID:       643fdefc-ce22-41ec-90ee-6229c09fc6a2
-:END:
-#+title: Polymorphism
-
-* Polymorpism

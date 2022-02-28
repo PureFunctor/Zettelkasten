@@ -1,6 +1,0 @@
-:PROPERTIES:
-:ID:       67ac9e1f-a8ad-48e7-a6ba-bc3aed168457
-:END:
-#+title: ST
-
-* Strict State

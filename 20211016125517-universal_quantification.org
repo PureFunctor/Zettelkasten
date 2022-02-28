@@ -1,7 +1,0 @@
-:PROPERTIES:
-:ID:       06e193f0-bfef-4db7-9e88-23af0e8f545b
-:END:
-#+title: Universal Quantification
-
-* Universal Quantification
-** Forall

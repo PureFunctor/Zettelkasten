@@ -1,5 +1,0 @@
-:PROPERTIES:
-:ID:       3aee7ca0-9030-4839-9d8b-43112c61ba08
-:END:
-#+title: Infix Operators
-#+author: PureFunctor
