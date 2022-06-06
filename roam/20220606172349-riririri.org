@@ -1,0 +1,70 @@
+:PROPERTIES:
+:ID:       09f55b30-3fb9-4ed4-b17f-0ce67dbafa4d
+:END:
+#+title: リリリリ (riririri)
+#+author: purefunctor
+#+date: <2022-06-06 Mon>
+#+filetags: :Rust:Draft:
+#+hugo_base_dir: ../site
+
+or the experience of writing a performant compiler in Rust as a functional programmer...
+
+#+hugo: more
+
+* Table of Contents
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+#+toc: headlines 2
+
+* Introduction
+
+These past few weeks, I've been spending most of my free time practicing Rust by building a [[https://github.com/PureFunctor/lily.git][small
+functional programming language called lily]]. I've decided to write it in said language for two
+reasons: fun is a mandatory answer, of course, but I really wanted to explore what it's like to
+write performant programs from scratch in a language and field that I've never really spent much
+time on.
+
+My experience with C and C++ were often riddled with unsafe and undefined behavior, and I can say
+for certain that I've been unproductive with these languages. On the other hand, I feel like I'm
+most productive when I have a direct discourse with the compiler, like I do with Haskell and
+PureScript.
+
+From what I've seen so far, the Rust compiler =rustc= does an exceptional job at presenting errors to
+developers. Here's an example of how errors are served by =rustc= during compilation.
+
+#+begin_src rust
+error[E0502]: cannot borrow `arena` as mutable because it is also borrowed as immutable
+  --> lily-cst/src/lib.rs:71:5
+   |
+62 |     let interners = Rc::new(Interners::new(&arena));
+   |                                            ------ immutable borrow occurs here
+...
+71 |     arena.reset();
+   |     ^^^^^^^^^^^^^ mutable borrow occurs here
+72 |     println!("{:?}", result);
+   |                      ------ immutable borrow later used here      
+#+end_src
+
+That being said, this /loooong/-form blog post is quite different from my previous post, [[id:80f33ef4-c203-414a-8dca-4f2016620142][Free and
+Cofree]], as it also serves as a "rolling" mind map while I'm developing the =lily= compiler.
+
+* Contents
+
+TBW...
+
+** Aethereal Arenas
+
+TBW...
+
+** Intrepid Interning
+
+TBW...
+
+** Tactical Tokenization
+
+TBW...
+
+
+* Miscellaneous
++ リリリリ? [[https://youtu.be/JsWanWImBaU][I'm not very creative when it comes to naming.]]
